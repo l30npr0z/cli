@@ -69,6 +69,8 @@ let SureExecute = function() {
 };
 //游戏模版下载中转位置
 let HandleExamplePath = path.join(__dirname, 'example');
+let HandleExamplePathFilter = path.join(__dirname, 'example/.git');
+let HandleExamplePathNoFilter = path.join(__dirname, 'example/.gitignore');
 //下载游戏模版
 let DownloadExample = function() {
 	return Promise.resolve(console.log('正在下载模版...', GlobalConfig.ExampleUrl))
@@ -84,7 +86,8 @@ let ExecuteMoveOld = function() {
 let ExecuteCopyExample = function() {
 	return fs.copy(HandleExamplePath, GlobalConfig.ProjectPath, {
 		filter: function(from, to) {
-			return !/\/\.git(\/|$)/.test(from);
+			if (from === HandleExamplePathNoFilter) return true;
+			return from.indexOf(HandleExamplePathFilter) != 0;
 		},
 	});
 };
