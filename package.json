@@ -1,6 +1,6 @@
 {
 	"name": "@icanvas/cli",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "自动部署iCanvas游戏开发框架",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
@@ -8,6 +8,11 @@
 	},
 	"bin": {
 		"icanvas": "./index.js"
+	},
+	"homepage": "https://github.com/i-canvas/cli",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/i-canvas/cli"
 	},
 	"main": "index.js",
 	"keywords": [
