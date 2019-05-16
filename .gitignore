@@ -1,0 +1,10 @@
+/node_modules
+/.idea
+/.vscode
+/.vagrant
+yarn-error.log
+.env
+npm-debug.log
+package-lock.json
+*.DS_Store
+/example
