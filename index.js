@@ -95,8 +95,8 @@ let ExecuteCopyExample = function() {
 let ExecuteHandlebars = function() {
 	let BuildJsonPath = path.join(GlobalConfig.ProjectPath, 'webpack/build.json');
 	let Content = Object.assign(require(BuildJsonPath), {
-		cname: GlobalConfig.ChineseName,
-		name: GlobalConfig.EnglishName,
+		ChineseName: GlobalConfig.ChineseName,
+		EnglishName: GlobalConfig.EnglishName,
 	});
 	return fs.writeJson(BuildJsonPath, Content, { spaces: 4 });
 };
