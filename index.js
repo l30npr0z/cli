@@ -17,7 +17,7 @@ let GlobalConfig = {
 	EnglishName: '', //英文名
 	BasePath: '', //游戏发布路径
 	ProjectPath: '', //游戏发布项目路径
-	ExampleUrl: '', //模版地址
+	ExampleUrl: 'https://github.com/i-canvas/example.git', //模版地址
 	MoveOldPath: '', //冲突项目移动位置
 };
 //设置项目名称
@@ -37,10 +37,8 @@ let SetBasePath = function() {
 };
 //获取游戏发布模版
 let SetExamplePath = function() {
-	return question(('请输入模版Git地址'.red + '(空则使用默认模版)'.cyan).bold).then(ExampleUrl => {
-		if (!ExampleUrl) ExampleUrl = 'https://github.com/i-canvas/example.git';
-		if (!ExampleUrl) return Promise.reject('***********未获得模版地址***********'.bold.green);
-		GlobalConfig.ExampleUrl = ExampleUrl;
+	return question(('请输入模版Git地址'.red + '(空则使用默认模版)'.cyan + '：'.red).bold).then(ExampleUrl => {
+		if (ExampleUrl) GlobalConfig.ExampleUrl = ExampleUrl;
 	});
 };
 //确定发布配置
@@ -85,7 +83,7 @@ let DownloadExample = function() {
 				require('child_process')
 					.spawn('git', Args)
 					.on('close', function(status) {
-						status == 0 ? resolve() : reject();
+						status == 0 ? resolve() : reject(console.log('错误代码：' + status));
 					});
 			});
 		})
