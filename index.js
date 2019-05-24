@@ -17,7 +17,7 @@ let GlobalConfig = {
 	EnglishName: '', //英文名
 	BasePath: '', //游戏发布路径
 	ProjectPath: '', //游戏发布项目路径
-	ExampleUrl: 'https://github.com/i-canvas/example.git', //模版地址
+	ExampleUrl: 'https://github.com/i-canvas/example.git#--depth 1', //模版地址
 	MoveOldPath: '', //冲突项目移动位置
 };
 //设置项目名称
@@ -37,7 +37,7 @@ let SetBasePath = function() {
 };
 //获取游戏发布模版
 let SetExamplePath = function() {
-	return question(('请输入模版Git地址'.red + '(空则使用默认模版)'.cyan + '：'.red).bold).then(ExampleUrl => {
+	return question(('请输入模版Git地址#[git参数]'.red + '(空则使用默认模版)'.cyan + '：'.red).bold).then(ExampleUrl => {
 		if (ExampleUrl) GlobalConfig.ExampleUrl = ExampleUrl;
 	});
 };
@@ -76,9 +76,8 @@ let DownloadExample = function() {
 		.then(() => {
 			return new Promise((resolve, reject) => {
 				let Args = ['clone'];
-				Args.push('--depth', '1');
 				let Url = GlobalConfig.ExampleUrl.split('#');
-				if (Url[1]) Args.push('-b', Url[1]);
+				if (Url[1]) Args.push(Url[1]);
 				Args.push('--', Url[0], HandleExamplePath);
 				require('child_process')
 					.spawn('git', Args)
