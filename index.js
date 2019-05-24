@@ -77,7 +77,7 @@ let DownloadExample = function() {
 			return new Promise((resolve, reject) => {
 				let Args = ['clone'];
 				let Url = GlobalConfig.ExampleUrl.split('#');
-				if (Url[1]) Args.push(Url[1]);
+				if (Url[1]) Args.push.apply(Args, Url[1].split(/\s+/));
 				Args.push('--', Url[0], HandleExamplePath);
 				require('child_process')
 					.spawn('git', Args)
