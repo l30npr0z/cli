@@ -30,7 +30,6 @@
 	"dependencies": {
 		"colors": "^1.3.3",
 		"fs-extra": "^7.0.1",
-		"git-clone-promise": "^1.0.0",
 		"node-pinyin": "^0.2.3"
 	}
 }

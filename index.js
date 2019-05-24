@@ -8,7 +8,7 @@ if (process.argv[2] != 'build') {
 const fs = require('fs-extra');
 const path = require('path');
 const pinyin = require('node-pinyin');
-const clone = require('git-clone-promise');
+// const clone = require('git-clone-promise');
 const readline = require('readline').createInterface({ input: process.stdin, output: process.stdout });
 const question = quest => new Promise(resolve => readline.question(quest, target => resolve(target)));
 
@@ -75,7 +75,20 @@ let HandleExamplePathNoFilter = path.join(__dirname, 'example/.gitignore');
 let DownloadExample = function() {
 	return Promise.resolve(console.log('正在下载模版...', GlobalConfig.ExampleUrl))
 		.then(() => fs.remove(HandleExamplePath))
-		.then(() => clone(GlobalConfig.ExampleUrl, HandleExamplePath, { shallow: true }))
+		.then(() => {
+			return new Promise((resolve, reject) => {
+				let Args = ['clone'];
+				Args.push('--depth', '1');
+				let Url = GlobalConfig.ExampleUrl.split('#');
+				if (Url[1]) Args.push('-b', Url[1]);
+				Args.push('--', Url[0], HandleExamplePath);
+				require('child_process')
+					.spawn('git', Args)
+					.on('close', function(status) {
+						status == 0 ? resolve() : reject();
+					});
+			});
+		})
 		.catch(e => Promise.reject('**********模版下载失败**********'.bold.green));
 };
 //重命名旧的游戏项目
