@@ -1,10 +1,11 @@
 {
 	"name": "@icanvas/cli",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"description": "自动部署iCanvas游戏开发框架",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "node ./index.js"
+		"build": "node ./src/build.js",
+		"help": "node ./src/help.js"
 	},
 	"bin": {
 		"icanvas": "./index.js"
