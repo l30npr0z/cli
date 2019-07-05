@@ -28,3 +28,6 @@ _注：此例子将[默认模版](./example/README.md)的所有内容拷贝到"�
 cd 新游戏模版/project #进入游戏开发目录
 npm install #安装游戏开发用到的插件
 ```
+
+## 查看接口文档
+### **[模版](https://github.com/i-canvas/example) | [核心构造](https://github.com/i-canvas/core) | [扩展接口](https://github.com/i-canvas/apis) | [数学方法](https://github.com/i-canvas/maths) | [资源管理](https://github.com/i-canvas/resources) | [视图组件](https://github.com/i-canvas/components) | [渲染器](https://github.com/i-canvas/renderer) | [Webpack打包配置](https://github.com/i-canvas/webpack)**
