@@ -27,6 +27,7 @@ _注：此例子将[默认模版](./example/README.md)的所有内容拷贝到"�
 ```bash
 cd 新游戏模版/project #进入游戏开发目录
 npm install #安装游戏开发用到的插件
+npm run serve #在浏览器中以测试模式打开
 ```
 
 ## 查看接口文档
