@@ -1,6 +1,6 @@
 {
 	"name": "@icanvas/cli",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"description": "自动部署iCanvas游戏开发框架",
 	"scripts": {},
 	"bin": {
@@ -11,7 +11,8 @@
 		"type": "git",
 		"url": "https://github.com/i-canvas/cli"
 	},
-	"main": "index.js",
+	"main": "dist/rollup.cjs.js",
+	"module": "dist/rollup.es.js",
 	"keywords": [
 		"canvas",
 		"游戏",
@@ -30,8 +31,16 @@
 		"node-pinyin": "^0.2.3"
 	},
 	"devDependencies": {
-		"colors": "^1.3.3",
-		"fs-extra": "^8.1.0",
-		"node-pinyin": "^0.2.3"
+		"@babel/core": "^7.1.2",
+		"@babel/plugin-proposal-class-properties": "^7.5.5",
+		"@babel/plugin-transform-runtime": "^7.6.2",
+		"@babel/preset-env": "^7.1.0",
+		"@babel/runtime": "^7.1.2",
+		"babel-loader": "^8.0.4",
+		"rollup": "^1.20.3",
+		"rollup-plugin-babel": "^4.3.3",
+		"rollup-plugin-commonjs": "^10.1.0",
+		"rollup-plugin-json": "^4.0.0",
+		"rollup-plugin-terser": "^5.1.1"
 	}
 }
