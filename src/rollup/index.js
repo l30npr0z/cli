@@ -6,14 +6,12 @@ export function getDynamic(project, input) {
 	dynamic.buildAt = Date.now();
 	dynamic.name = pinyin(project.name, { style: 'toneWithNumber' }).join('');
 	dynamic.resourceMap = dirToJson('./resource');
-	if (project.qiniu && input.resource) dynamic.assetsUrl = `${project.qiniu.Url}/${project.qiniu.Path}/${dynamic.name}/${input.resource}`;
 	return dynamic;
 }
 export function getInput(args) {
 	return Object.assign(
 		{
 			target: 'serve', //打包目标
-			resource: '', //资源版号
 			upload: false, //是否上传
 			version: '', //打包版本
 			mode: 'development', //打包模式
