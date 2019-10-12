@@ -11,7 +11,7 @@ export function getInput(args) {
 		mode: args.mode || 'development', //打包模式
 	};
 }
-export function irToJson(DirPath) {
+export function dirToJson(DirPath) {
 	let Res = {};
 	fs.readdirSync(DirPath).forEach(FileName => {
 		if (FileName.indexOf('.') == 0) return;
