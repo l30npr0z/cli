@@ -8,14 +8,25 @@ var fs = _interopDefault(require('fs-extra'));
 var path = _interopDefault(require('path'));
 var pinyin = _interopDefault(require('node-pinyin'));
 
+function getDynamic(project, input) {
+	let dynamic = {};
+	dynamic.buildAt = Date.now();
+	dynamic.name = pinyin(project.name, { style: 'toneWithNumber' }).join('');
+	dynamic.resourceMap = dirToJson('./resource');
+	if (project.qiniu && input.resource) dynamic.assetsUrl = `${project.qiniu.Url}/${project.qiniu.Path}/${dynamic.name}/${input.resource}`;
+	return dynamic;
+}
 function getInput(args) {
-	return {
-		target: args.target || 'serve', //打包目标
-		resource: args.resource || '', //资源版号
-		upload: args.upload || false, //是否上传
-		version: args.version || '', //打包版本
-		mode: args.mode || 'development', //打包模式
-	};
+	return Object.assign(
+		{
+			target: 'serve', //打包目标
+			resource: '', //资源版号
+			upload: false, //是否上传
+			version: '', //打包版本
+			mode: 'development', //打包模式
+		},
+		args,
+	);
 }
 function dirToJson(DirPath) {
 	let Res = {};
@@ -39,17 +50,13 @@ function dirToJson(DirPath) {
 	});
 	return Res;
 }
-function build(args, cli, project) {
-	let input = getInput(args.input);
-	delete args.input;
-	let dynamic = {};
-	dynamic.buildAt = Date.now();
-	dynamic.name = pinyin(project.name, { style: 'toneWithNumber' }).join('');
-	dynamic.resourceMap = dirToJson('./resource');
-	if (project.qiniu && input.resource) dynamic.assetsUrl = `${project.qiniu.Url}/${project.qiniu.Path}/${dynamic.name}/${input.resource}`;
-	return cli(project, input, dynamic);
+function buildArguments(args, project) {
+	let input = getInput(args);
+	let dynamic = getDynamic(project, input);
+	return [project, input, dynamic];
 }
 
-exports.build = build;
+exports.buildArguments = buildArguments;
 exports.dirToJson = dirToJson;
+exports.getDynamic = getDynamic;
 exports.getInput = getInput;
