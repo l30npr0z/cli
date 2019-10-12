@@ -1,14 +1,10 @@
 {
 	"name": "@icanvas/cli",
-	"version": "1.0.0-beta.1",
+	"version": "1.1.0",
 	"description": "自动部署iCanvas游戏开发框架",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "node ./src/build.js",
-		"help": "node ./src/help.js"
-	},
+	"scripts": {},
 	"bin": {
-		"icanvas": "./index.js"
+		"icanvas": "./bin/index.js"
 	},
 	"homepage": "https://github.com/i-canvas/cli",
 	"repository": {
