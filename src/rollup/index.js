@@ -12,8 +12,6 @@ export function getInput(args) {
 	return Object.assign(
 		{
 			target: 'serve', //打包目标
-			upload: false, //是否上传
-			version: '', //打包版本
 			mode: 'development', //打包模式
 		},
 		args,
